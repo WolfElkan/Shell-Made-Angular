@@ -9,7 +9,7 @@ app.controller('things_cxr',['$scope','$location','$routeParams','ThingFactory',
 
 	$scope.thing_new = {}
 	$scope.thing_create = function() {
-		ThingFactory.create($scope.new_thing)
+		ThingFactory.create($scope.thing_new)
 		$location.url('/things')
 	}
 

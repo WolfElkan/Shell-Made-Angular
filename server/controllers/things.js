@@ -3,6 +3,7 @@ var Thing = require('../models/thing.js')
 var things = {}
 
 things.index  = function(request, response) {
+	console.log('HIT')
 	Thing.find({},function(error,result) {
 		response.json({'things':result})
 	})

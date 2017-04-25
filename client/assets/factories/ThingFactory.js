@@ -3,6 +3,16 @@ app.factory('ThingFactory',['$http',function($http) {
 	var factory = {}
 	var content = []
 
+	factory.load = function() {
+		var route = `http://localhost:8000`
+		// var stuff = new_thing
+		console.log(route)
+		// console.log(stuff)
+		$http.get(route).then(function(returned) {
+			console.log('Returned:',returned)
+		})
+	}
+
 	function valid(thing) {
 		return true
 	}
@@ -33,8 +43,12 @@ app.factory('ThingFactory',['$http',function($http) {
 	}
 
 	factory.create = function(new_thing) {
+		var route = `/things/create`
+		var stuff = new_thing
+		console.log(route)
+		console.log(stuff)
 		if (valid(new_thing)) {
-			$http.post('/things',new_thing).then(function(returned) {
+			$http.post(route,stuff).then(function(returned) {
 				if (returned.status == 200) {
 					content.push(returned.data)
 				} else {
@@ -46,7 +60,7 @@ app.factory('ThingFactory',['$http',function($http) {
 
 	factory.update = function(id,patch) {
 		if (valid(patch)) {
-			$http.put('/things',{'query':{'_id':id},'patch':patch}).then(function(returned) {
+			$http.post(`/things/update/${id}`,{'query':{'_id':id},'patch':patch}).then(function(returned) {
 				if (returned.status == 200) {
 					var index = factory.findex(id)
 					content[index] = returned.data
@@ -59,7 +73,7 @@ app.factory('ThingFactory',['$http',function($http) {
 
 	factory.delete = function(id) {
 		if (findex(id)+1) {
-			$http.delete('/things/id').then(function(returned) {
+			$http.post(`/things/delete/${id}`).then(function(returned) {
 				if (returned.status == 200) {
 					var index = factory.findex(id)
 					for (var i = index; i < content.length; i++) {
@@ -72,6 +86,8 @@ app.factory('ThingFactory',['$http',function($http) {
 			})
 		}
 	}
+
+	factory.load()
 
 	return factory
 
