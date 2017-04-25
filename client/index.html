@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html ng-app='app'>
+	<head>
+		<title>demoproject</title>
+		<link rel="stylesheet" type="text/css" href="static/style.css">
+		<script type="text/javascript" src="angular/angular.js"></script>
+		<script type="text/javascript" src="angular-route/angular-route.js"></script>
+		<script src='app.js'></script>
+		<script src='assets/factories/ThingFactory.js'></script>
+		<script src='assets/controllers/things_cxr.js'></script>
+		<script type="text/javascript">
+
+			// Other JavaScript Here
+
+		</script>
+	</head>
+	<body>
+		<h1 ng-if="false">Error: Cannot Run Angular</h1>
+		<div ng-view><!-- Partials load here --></div>
+		<a href='#!/things'>Home</a>
+		<a href='#!/things/new'>New</a>
+	</body>
+</html>
