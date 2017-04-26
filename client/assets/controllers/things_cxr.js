@@ -2,7 +2,7 @@ app.controller('things_cxr',['$scope','$location','$routeParams','ThingFactory',
 
 	$scope.Thing = ThingFactory
 
-	$scope.thing_index = ThingFactory.all( )
+	$scope.thing_index = 
 	$scope.thing_show = function(_id) {
 		return ThingFactory.find(_id)
 	}
@@ -22,4 +22,5 @@ app.controller('things_cxr',['$scope','$location','$routeParams','ThingFactory',
 	$scope.thing_delete = function() {
 		ThingFactory.delete($scope.new_thing)
 	}
+
 }])

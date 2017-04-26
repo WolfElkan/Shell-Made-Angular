@@ -3,7 +3,6 @@ var things = require('../controllers/things.js')
 module.exports = function(app){
 
 	app.get(`/things/index`, function(req, res) {
-		console.log('HIT')
 		things.index(req, res);
 	});
 

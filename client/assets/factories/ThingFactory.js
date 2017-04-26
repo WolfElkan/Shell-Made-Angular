@@ -1,16 +1,16 @@
-app.factory('ThingFactory',['$http',function($http) {
+app.factory('ThingFactory',['$http','$q',function($http,$q) {
 
 	var factory = {}
 	var content = []
 
-	factory.load = function() {
-		var route = `http://localhost:8000`
-		// var stuff = new_thing
-		console.log(route)
-		// console.log(stuff)
+	function load() {
+		var route = `/things/index`
+
 		$http.get(route).then(function(returned) {
 			console.log('Returned:',returned)
+			content = returned.data.things
 		})
+
 	}
 
 	function valid(thing) {
@@ -18,6 +18,7 @@ app.factory('ThingFactory',['$http',function($http) {
 	}
 
 	factory.all = function() {
+		console.log(content)
 		return content
 	}
 
@@ -87,7 +88,9 @@ app.factory('ThingFactory',['$http',function($http) {
 		}
 	}
 
-	factory.load()
+	factory.foo = 7
+
+	load()
 
 	return factory
 
